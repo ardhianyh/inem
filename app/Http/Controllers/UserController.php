@@ -4,16 +4,13 @@ namespace App\Http\Controllers;
 
 use Auth;
 use App\User;
+Use App\Content;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 
 class UserController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
+
     public function index()
     {
         $user = Auth::user();
@@ -24,44 +21,7 @@ class UserController extends Controller
         return view('profile.account', compact('account'));
     }
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
-    {
-        
-    }
 
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
-    public function store(Request $data)
-    {
-        
-    }
-
-    /**
-     * Display the specified resource.
-     *
-     * @param  \App\User  $User
-     * @return \Illuminate\Http\Response
-     */
-    public function show(User $User)
-    {
-        //
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  \App\User  $User
-     * @return \Illuminate\Http\Response
-     */
     public function edit(User $id)
     {
         $account = User::find($id);
@@ -69,13 +29,7 @@ class UserController extends Controller
         return view('account.edit', ['account' => $account]);
     }
 
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  \App\User  $User
-     * @return \Illuminate\Http\Response
-     */
+
     public function update($id, Request $data)
     {
 
@@ -102,14 +56,54 @@ class UserController extends Controller
                         ->with('success','Account updated successfully.');
     }
 
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  \App\User  $User
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy(User $User)
-    {
-        //
+    public function avatar(Request $request){
+
+        $user = Auth::user();
+        $request->file('avatar')->store('public/avatar');
+        $user->avatar = $request->file('avatar')->hashName('avatar/');
+        $user->save();
+        
+        return back()->with('success','Upload Berhasil');
+    }
+
+    public function post($id){
+        
+        $user = Auth::user();
+        $content = DB::table('contents')
+                            ->where('idx', $id)
+                            ->get();
+
+        return view('account.post', compact('user', 'content'));
+
+    }
+
+    public function username($id, Request $data){
+        
+        request()->validate([
+            'username' => 'required'
+        ]);
+
+        $update = User::find($id);
+
+        $update->username = $data['username'];
+        $update->save();
+
+        return back()->with('success','Changed Username successfully');
+
+    }
+
+    public function email($id, Request $data){
+        
+        request()->validate([
+            'email' => 'required'
+        ]);
+
+        $update = User::find($id);
+
+        $update->email = $data['email'];
+        $update->save();
+
+        return back()->with('success','Changed Email successfully');
+
     }
 }

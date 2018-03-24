@@ -20,7 +20,7 @@ Route::get('/', 'HomeController@index')->name('home');
 
 Route::get('/account', 'UserController@index')->name('account');
 Route::get('/account/{id}/edit', 'UserController@edit')->name('account.edit');
-Route::patch('/account/{id}/update', 'UserController@update')->name('account.update');
+Route::patch('/avatar/upload', 'UserController@avatar')->name('avatar.upload');
 Route::delete('/account/delete/{id}', 'UserController@destroy')->name('account.delete');
 
 
@@ -28,7 +28,7 @@ Route::get('/profile', 'ProfileController@index')->name('profile');
 Route::get('/profile/form', 'ProfileController@create')->name('profile.form');
 Route::post('/profile/insert', 'ProfileController@store')->name('profile.insert');
 Route::post('/profile/{profile}', 'ProfileController@update')->name('profile.update');
-Route::get('/profile/delete/{id}', 'ProfileController@destroy')->name('profile.delete');
+Route::delete('/profile/delete/{id}', 'ProfileController@destroy')->name('profile.delete');
 Route::get('/setting/{profile}', 'ProfileController@setting')->name('profile.setting');
 
 Route::get('/content', 'ContentController@index')->name('content');
@@ -38,3 +38,7 @@ Route::get('/content/{content}', 'ContentController@show')->name('content.detail
 Route::get('/content/{content}/edit', 'ContentController@edit')->name('content.edit');
 Route::patch('/content/{content}', 'ContentController@update')->name('content.update');
 Route::delete('/content/{content}', 'ContentController@destroy')->name('content.delete');
+
+Route::get('/post/{user}', 'UserController@post')->name('account.post');
+Route::post('/username/{user}', 'UserController@username')->name('account.username');
+Route::post('/email/{user}', 'UserController@email')->name('account.email');

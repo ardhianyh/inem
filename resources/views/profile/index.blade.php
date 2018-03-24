@@ -52,7 +52,7 @@
                                        <div class="row">
                                          <div class="col-md-5">
                                            <div class="content-left">
-                                             <span class="help-block">Nama Depan</span>asdas
+                                             <span class="help-block">Nama Depan</span>
                                            <div class="provider-btn-group">
                                               <div class="provider-btn-image">
                                               <i class="fa fa-user"></i>

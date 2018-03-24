@@ -36,7 +36,7 @@
                                     <p>Change or Remove your profile picture</p>
                                   </div>
                                   <div class="col-md-8">
-                                    <form method="post" action="/profile/upload" enctype="multipart/form-data">
+                                    <form method="post" action="{{route('avatar.upload')}}" enctype="multipart/form-data">
                                       {{ csrf_field() }}
                                       {{method_field('PATCH')}}
                                       @if (!is_null($user->avatar))

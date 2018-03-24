@@ -11,7 +11,7 @@
             </li>
             
             <li class="dropdown">
-                <a href="#">
+                <a href="{{route('account.post', Auth::user()->idx)}}">
                     <i class="sidebar-icon fa fa-list"></i>
                     Post
                 </a>

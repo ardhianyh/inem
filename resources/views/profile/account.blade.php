@@ -28,7 +28,9 @@
                             <div class="content">
                               @foreach ($account as $data)
 
-                                  <form action="#" method="post">
+                                  <form action="{{route('account.username', $data->id)}}" method="post">
+                                    @csrf
+
                                     <div class="row">
                                       <div class="col-md-4">
                                         <h4 class="edit-top">
@@ -44,7 +46,7 @@
                                             <div class="provider-btn-image">
                                             <i class="fa fa-user"></i>
                                             </div>
-                                            <input type="text" class="provider-btn not-active">
+                                            <input type="text" class="provider-btn not-active" name="username">
                                           </div>
                                           </div>
                                         </div>
@@ -56,8 +58,14 @@
                                       </div>
                                     </div>
                                   </form>
+
+                              @endforeach
                                     <hr>
-                                  <form action="#" method="post">
+
+                              @foreach ($account as $data)
+                                  <form action="{{route('account.email', $data->id)}}" method="post">
+                                    @csrf
+
                                     <div class="row">
                                      <div class="col-md-4">
                                       <h4 class="edit-top">
@@ -68,12 +76,12 @@
                                       <div class="col-md-5">
                                         <div class="row">
                                           <div class="form-group col-md-8">
-                                           <span class="help-block" style="font-size: 11px;">your email <strong><i>{{$data->email}}</i></strong></span>
+                                           <span class="help-block" style="font-size: 11px;">your email <strong><i> {{$data->email}} </i></strong></span>
                                            <div class="provider-btn-group">
                                             <div class="provider-btn-image">
                                             <i class="fa fa-envelope-o"></i>
                                             </div>
-                                            <input type="text" class="provider-btn not-active">
+                                            <input type="email" class="provider-btn not-active" name="email">
                                           </div>
                                           </div>
                                         </div>
@@ -85,7 +93,11 @@
                                       </div>
                                     </div>
                                   </form>
+
+                              @endforeach
                                     <hr>
+                              @foreach ($account as $data)
+
                                   <form action="#" method="post">
                                     <div class="row">
                                      <div class="col-md-4">
@@ -119,7 +131,9 @@
                                       </div>
                                     </div>
                                     </form>
+                              @endforeach
                                      <hr>
+                              @foreach ($account as $data)
                                     <form action="#" method="post">
                                       <div class="row">
                                        <div class="col-md-4">
