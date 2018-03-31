@@ -61,12 +61,7 @@
                     <ul class="breadcrumbs-list">
                       <li><a href="#"><i class="fa fa-home"></i> Inem</a></li>
                       <li><i class="fa fa-angle-right"></i></li>
-                      <li><a href="#"> Semua</a></li>
-                      <li><i class="fa fa-angle-right"></i></li>
-                      <li class="active">
-                         <h2 class="breadcrumbs-sub-title"><a href="menemukan.php">Dompet</a></h2>
-                      </li>
-                      
+                      <li><a href="{{url('/')}}"> Semua</a></li>
                     </ul>
                 </div>
                 <div class="col-md-2">

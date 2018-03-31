@@ -7,9 +7,9 @@
             <div class="row">
                 <div class="up-panel panel-bottom" style="padding-bottom: 40px;">
                     <div class="row">
-                            
+
                         @include('layouts.sidebar')
-  
+
                         <div class="col-md-9">
                             <div class="container-fluid">
                                 <ol class="breadcrumbs-container">
@@ -31,11 +31,11 @@
                                 </ol>
                                 <div class="content" style="margin-top: 20px;">
                                 <div class="row">
-                                 <div class="col-md-10"> 
-                                  <div class="form-group">             
+                                 <div class="col-md-10">
+                                  <div class="form-group">
                                     <div class="btn-group m-r">
                                       <button data-toggle="dropdown" class="btn btn-sm btn-default dropdown-toggle">
-                                        <span class="dropdown-label">Type</span> 
+                                        <span class="dropdown-label">Type</span>
                                         <span class="caret"></span>
                                       </button>
                                       <ul class="dropdown-menu dropdown-select">
@@ -46,7 +46,7 @@
                                     </div>
                                     <div class="btn-group m-r">
                                       <button data-toggle="dropdown" class="btn btn-sm btn-default dropdown-toggle">
-                                        <span class="dropdown-label">Status</span> 
+                                        <span class="dropdown-label">Status</span>
                                         <span class="caret"></span>
                                       </button>
                                       <ul class="dropdown-menu dropdown-select">
@@ -75,7 +75,7 @@
                                 </div>
 
                               <div class="row" style="margin-top: 20px;">
-                              
+
                             @foreach ($content as $data)
 
                                <div class="col-xs-4 col-sm-5 col-md-3">
@@ -88,17 +88,41 @@
                                       </div>
                                       <a href="" class="dropdown pull-right" class="dropdown-toggle" data-toggle="dropdown"><span class="fa fa-gear black" aria-hidden="true" style="padding-top: 8px;"></span></a>
                                       <ul class="dropdown-menu pull-right">
-                                        <li><a href="#"><i class="fa fa-edit"></i> Edit Post</a></li>
-                                        <li><a href="#"><i class="fa fa-trash"></i> Delete Post</a></li>
+                                        <li><a href="{{route('content.edit', $data->id)}}"><i class="fa fa-edit"></i> Edit Post</a></li>
+                                        <li><a href="javascript:;" id="btnDelete" data-id="{{$data->id}}" data-token="{{ csrf_token() }}"><i class="fa fa-trash"></i> Delete Post</a></li>
                                       </ul>
                                       <p><i class="fa fa-map-marker"></i> {{$data->city}}</p>
                                       <p style="font-size: 12px;"><i class="fa fa-clock-o"> {{$data->incident}}</i></p>
                                   </div>
                                 </div>
                               </div>
-        
+
                             @endforeach
 
+                            </div>
+
+                            <div class="modal fade delete" id="modalDelete">
+                                <div class="modal-dialog">
+                                    <div class="modal-content">
+                                      <div class="modal-header">
+                                        <h5 class="text-center" id="exampleModalLabel">Delete Post</h5>
+                                      </div>
+                                      <div class="modal-body">
+                                        <div class="alert alert-warning">
+                                          <strong>Attantion!</strong> Are You sure to delete this post?
+                                        </div>
+                                      </div>
+                                      <div class="modal-footer">
+                                        <form method="post">
+                                            @csrf
+                                            <input type="hidden" id="id" name="id"> 
+                                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel </button>
+                                            <button id="submitDelete" type="button" class="btn btn-danger">Delete</button>
+                                        </form>
+                                        
+                                      </div>
+                                    </div>
+                                </div>
                             </div>
 
                               </div>
@@ -107,5 +131,5 @@
                 </div>
             </div>
         </div>
-    </section>          
+    </section>
 @endsection

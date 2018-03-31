@@ -9,33 +9,18 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 
 class ContentController extends Controller
-{
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
+  {
+
     public function index()
     {
         return view('content.index', compact('content'));
     }
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
     public function create()
     {
         return view('content.create', compact('content'));
     }
 
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
     public function store(Request $data)
     {
 
@@ -84,52 +69,68 @@ class ContentController extends Controller
                         ->with('success','Content created successfully.');
     }
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  \App\Content  $content
-     * @return \Illuminate\Http\Response
-     */
     public function show(Content $content){
-        
+
+        $user = Auth::user();
+
         $profile = DB::table('profiles')
                               ->where('idx', $content->idx)
                               ->get();
-                              
-        return view('content.detail',compact('content', 'profile'));
+
+
+        return view('content.detail',compact('content', 'profile', 'user'));
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  \App\Content  $content
-     * @return \Illuminate\Http\Response
-     */
     public function edit(Content $content)
     {
-        //
+        return view('content.edit',compact('content'));
     }
 
-    /**
-     * insert the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Content  $content
-     * @return \Illuminate\Http\Response
-     */
-    public function insert(Request $request, Content $content)
+    public function update($id, Request $data)
     {
-        //
+      request()->validate([
+          'title' => 'required',
+          'type' => 'required',
+          'category_1' => 'required',
+          'category_2' => 'required',
+          'category_3' => 'required',
+          'province' => 'required',
+          'city' => 'required',
+          'place' => 'required',
+          'incident' => 'required',
+          'chronology' => 'required',
+          'desc' => 'required',
+          'note' => 'required',
+      ]);
+
+      $update = Content::find($id);
+
+      $update->idx = $data['idx'];
+      $update->title = $data['title'];
+      $update->type = $data['type'];
+      $update->category_1 = $data['category_1'];
+      $update->category_2 = $data['category_2'];
+      $update->category_3 = $data['category_3'];
+      $update->province = $data['province'];
+      $update->city = $data['city'];
+      $update->place = $data['place'];
+      $update->incident = $data['incident'];
+      $update->chronology = $data['chronology'];
+      $update->desc = $data['desc'];
+      $update->note = $data['note'];
+
+      $update->save();
+
+      return redirect()->route('account.post', $data{'idx'})
+                      ->with('success','Post Updated successfully.');
+
     }
 
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  \App\Content  $content
-     * @return \Illuminate\Http\Response
-     */
     public function destroy(Content $content)
     {
-        //
+        $content = new Content;      
+        $contet = Content::find($conent); 
+        $content->delete($content);
+
     }
 }

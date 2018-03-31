@@ -37,8 +37,9 @@ Route::patch('/content/insert', 'ContentController@store')->name('content.create
 Route::get('/content/{content}', 'ContentController@show')->name('content.detail');
 Route::get('/content/{content}/edit', 'ContentController@edit')->name('content.edit');
 Route::patch('/content/{content}', 'ContentController@update')->name('content.update');
-Route::delete('/content/{content}', 'ContentController@destroy')->name('content.delete');
 
 Route::get('/post/{user}', 'UserController@post')->name('account.post');
 Route::post('/username/{user}', 'UserController@username')->name('account.username');
 Route::post('/email/{user}', 'UserController@email')->name('account.email');
+
+Route::delete('/post/delete/{content}', 'ContentController@destroy')->name('content.delete');

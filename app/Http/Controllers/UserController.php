@@ -11,8 +11,8 @@ use Illuminate\Support\Facades\DB;
 class UserController extends Controller
 {
 
-    public function index()
-    {
+    public function index(){
+
         $user = Auth::user();
         $account = DB::table('users')
                               ->where('idx', $user->idx)
@@ -22,16 +22,15 @@ class UserController extends Controller
     }
 
 
-    public function edit(User $id)
-    {
+    public function edit(User $id){
+
         $account = User::find($id);
-        
+
         return view('account.edit', ['account' => $account]);
     }
 
 
-    public function update($id, Request $data)
-    {
+    public function update($id, Request $data){
 
         request()->validate([
             'name' => 'required',
@@ -62,12 +61,12 @@ class UserController extends Controller
         $request->file('avatar')->store('public/avatar');
         $user->avatar = $request->file('avatar')->hashName('avatar/');
         $user->save();
-        
+
         return back()->with('success','Upload Berhasil');
     }
 
     public function post($id){
-        
+
         $user = Auth::user();
         $content = DB::table('contents')
                             ->where('idx', $id)
@@ -78,7 +77,7 @@ class UserController extends Controller
     }
 
     public function username($id, Request $data){
-        
+
         request()->validate([
             'username' => 'required'
         ]);
@@ -93,7 +92,7 @@ class UserController extends Controller
     }
 
     public function email($id, Request $data){
-        
+
         request()->validate([
             'email' => 'required'
         ]);

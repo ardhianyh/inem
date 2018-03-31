@@ -2,11 +2,11 @@
 
 @section('content')
 
-    
+
 
 <div class="container">
     <div class="row justify-content-center">
-        <div class="col-md-6 col-md-offset-3">
+        <div class="col-md-4 col-md-offset-4">
             <section class="panel panel-default" style="margin-top: 20px;">
                 <div class="panel-body">
                   <div class="tab-content">
@@ -45,7 +45,7 @@
                       <div class="loginOr text-center">
                         <span class="help-block">Login With</span>
                       </div>
-                      
+
                       <div class="loginwith text-center">
                         <p id="inline">
                           <a href="#" class="btn btn-rounded btn-sm btn-primary"><i class="fa fa-fw fa-facebook"></i> Facebook</a>

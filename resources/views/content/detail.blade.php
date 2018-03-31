@@ -39,7 +39,7 @@
                  </div>
                   </div>
              </div>
-
+ 
             <div class="row">
               <div class="col-md-7" style="padding-left: 0;">
                 <div class="up-panel">
@@ -55,7 +55,7 @@
                                     <img src="{{$content->image}}"/>
                                 </a>
                             </div>
-                            
+
                         </div><!-- /row -->
                        </div>
                   </div>
@@ -156,7 +156,7 @@
                                       <p>{{ $content->note }}</p>
 
 
-                                    </div>                
+                                    </div>
                                   </div>
                               </div>
 
@@ -208,7 +208,7 @@
                                 @endforeach
                               </div>
                               </div>
-							
+
                             </div>
                           </section>
                           <section class="cp">

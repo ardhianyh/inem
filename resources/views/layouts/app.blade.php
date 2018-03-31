@@ -11,7 +11,7 @@
     <title>Ilang Nemu</title>
 
     <!-- Scripts -->
-    <!-- <script src="{{ asset('js/app.js') }}" defer></script> -->
+    <script src="{{ asset('js/app.js') }}" defer></script>
     
 
     <!-- Fonts -->
@@ -148,9 +148,10 @@
           </div>
       </footer>
     </div>
+    <script src="{{ asset('js/custom.js') }}" defer></script>
     <script src="{{ asset('js/jquery-3.2.1.min.js') }}" defer></script>
     <script src="{{ asset('js/bootstrap.min.js') }}" defer></script>
     <script src="{{ asset('js/file-input.min.js') }}" defer></script>
-
+    
 </body>
 </html>
